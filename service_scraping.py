@@ -52,6 +52,7 @@ def show_table():
         latitudes.append(latitud)
         longitudes.append(longitud)
         provincias.append(provincia)
+    
     df = pd.DataFrame(list(zip(horas, profundidades, magnitudes, latitudes, longitudes, provincias)), 
                   columns = ['Hora', 'Profundidad', 'Magnitud', 'Latitud', 'Longitud', 'Provincia'])
     df = df.reset_index(drop=True)
