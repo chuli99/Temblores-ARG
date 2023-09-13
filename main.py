@@ -50,13 +50,17 @@ if __name__ == "__main__":
     api = tweepy.API(auth)
     data = ""
     while True:
-        time.sleep(60)
-        old_data = data
-        data = data_request()
-        if old_data == data_request():
-            print("No hay nuevos datos")
+        try:
+            time.sleep(60)
+            old_data = data
+            data = data_request()
+            if old_data == data_request():
+                print("No hay nuevos datos")
+                continue
+            else:
+                hora, profundidad, magnitud, latitud, longitud, provincia = data
+                send_tweet(hora, profundidad, magnitud, latitud, longitud, provincia)
+        except:
+            print("Error en el envio del tweet- Tweet duplicado")
             continue
-        else:
-            hora, profundidad, magnitud, latitud, longitud, provincia = data
-            send_tweet(hora, profundidad, magnitud, latitud, longitud, provincia)
     #media_id = api.media_upload("yabastamacri.jfif").media_id_string
