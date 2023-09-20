@@ -13,7 +13,10 @@ def data_request():
     return (hora, profundidad, magnitud, latitud, longitud, provincia)
 
 def send_tweet(hora, profundidad, magnitud, latitud, longitud, provincia):
-    tweet_text = f"Temblor en la provincia de {provincia} de {magnitud} en la escala de richter. \n- Profundidad: {profundidad}\n- Latitud: {latitud}\n- Longitud: {longitud}\n- Hora: {hora}"
+    if provincia == "CHILE":
+        tweet_text = f"Temblor en {provincia} de {magnitud} en la escala de richter. \n- Profundidad: {profundidad}\n- Latitud: {latitud}\n- Longitud: {longitud}\n- Hora: {hora}"
+    else:
+        tweet_text = f"Temblor en la provincia de {provincia} de {magnitud} en la escala de richter. \n- Profundidad: {profundidad}\n- Latitud: {latitud}\n- Longitud: {longitud}\n- Hora: {hora}"
 
     #Send tweet
     client.create_tweet(text=tweet_text)
